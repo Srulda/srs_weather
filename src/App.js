@@ -4,6 +4,8 @@ import { observer } from 'mobx-react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Navbar from './components/Navbar'
 import './App.css'
+
+import Favorites from './components/Favorites'
 import Home from './components/Home'
 
 const theme = createMuiTheme({
@@ -33,6 +35,7 @@ class App extends Component {
             path='/'
             render={({ match }) => <Home match={match} />}
           />
+    <Route exact path='/favorites' render={({ match }) => <Favorites match={match} />} />
         </MuiThemeProvider>
       </Router>
     )
