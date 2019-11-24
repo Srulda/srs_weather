@@ -8,6 +8,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Navbar from './components/Navbar'
 
 import './App.css'
+import Favorites from './components/Favorites'
 
 const theme = createMuiTheme({
   palette: {
@@ -31,11 +32,8 @@ class App extends Component {
       <Router>
         <MuiThemeProvider theme={theme}>
           <Navbar />
-          {/* <Route
-            exact
-            path='/'
-            render={({ match }) => <Main match={match} />}
-          /> */}
+          {/* <Route exact path='/' render={({ match }) => <Main match={match} />} /> */}
+          <Route exact path='/favorites' render={({ match }) => <Favorites match={match} />} />
         </MuiThemeProvider>
       </Router>
     )
