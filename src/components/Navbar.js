@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button, ButtonGroup } from '@material-ui/core'
 
-import MenuIcon from '@material-ui/icons/Menu'
 import { withStyles } from '@material-ui/styles'
 
 const styles = theme => ({
@@ -17,6 +17,11 @@ const styles = theme => ({
   },
   buttonsContainer: {
     display: 'flex',
+    width: '20%',
+    justifyContent: 'space-around',
+  },
+  button: {
+    textTransform: 'none',
   },
 })
 
@@ -27,25 +32,21 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            <IconButton
-              edge='start'
-              className={classes.menuButton}
-              color='inherit'
-              aria-label='menu'
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography variant='h6' className={classes.title}>
               Weather App
             </Typography>
-            <div className={classes.buttonsContainer}>
-              <Button className={classes.button} variant='contained' color='secondary'>
+            <ButtonGroup>
+              {/* <Link to={`/`} style={{ textDecoration: 'none' }}> */}
+              <Button variant='outlined' className={classes.button}>
                 Home
               </Button>
-              <Button variant='contained' color='secondary'>
-                Favorites
+              {/* </Link> */}
+              <Button variant='outlined' className={classes.button}>
+                <Link to={`/favorites`} style={{ color: '#000', textDecoration: 'none' }}>
+                  Favorites
+                </Link>
               </Button>
-            </div>
+            </ButtonGroup>
           </Toolbar>
         </AppBar>
       </div>
