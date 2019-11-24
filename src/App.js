@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-
 import { observer } from 'mobx-react'
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-
 import Navbar from './components/Navbar'
-
 import './App.css'
+import Home from './components/Home'
 
 const theme = createMuiTheme({
   palette: {
@@ -31,11 +28,11 @@ class App extends Component {
       <Router>
         <MuiThemeProvider theme={theme}>
           <Navbar />
-          {/* <Route
+          <Route
             exact
             path='/'
-            render={({ match }) => <Main match={match} />}
-          /> */}
+            render={({ match }) => <Home match={match} />}
+          />
         </MuiThemeProvider>
       </Router>
     )
