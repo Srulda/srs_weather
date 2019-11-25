@@ -23,6 +23,9 @@ const styles = theme => ({
   button: {
     textTransform: 'none',
   },
+  activeButton: {
+    background: theme.palette.secondary.main,
+  },
 })
 
 class Navbar extends Component {
@@ -36,11 +39,11 @@ class Navbar extends Component {
               Weather App
             </Typography>
             <ButtonGroup>
-              {/* <Link to={`/`} style={{ textDecoration: 'none' }}> */}
               <Button variant='outlined' className={classes.button}>
-                Home
+                <Link to={`/`} style={{ color: '#000', textDecoration: 'none' }}>
+                  Home
+                </Link>
               </Button>
-              {/* </Link> */}
               <Button variant='outlined' className={classes.button}>
                 <Link to={`/favorites`} style={{ color: '#000', textDecoration: 'none' }}>
                   Favorites
