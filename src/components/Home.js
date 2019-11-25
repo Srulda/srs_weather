@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
+import CurrentWeather from "./CurrentWeather";
+import SearchInput from "./SearchInput";
 import AutoComplete from "./AutoComplete";
 
 @observer
@@ -29,12 +31,17 @@ class Home extends Component {
     return (
       <div>
         <div>
+
+      <SearchInput/>
+      <CurrentWeather/>
+
           <input type="text"
           id = "searchInput"
           value = {this.state.searchInput}
           onChange = {this.displayCities} 
            />
           <button onClick = {this.getWeather}>search</button>
+
         </div>
         <div>{ this.state.isCityDisplay ? <AutoComplete /> : null} </div>
       </div>
