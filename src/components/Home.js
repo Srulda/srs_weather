@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
+import CurrentWeather from "./CurrentWeather";
+import SearchInput from "./SearchInput";
 
 @observer
 @inject("weatherStore")
@@ -28,12 +30,8 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <input type="text"
-          id = "searchInput"
-          value = {this.state.searchInput}
-          onChange = {this.displayCities} 
-           />
-          <button>search</button>
+      <SearchInput/>
+      <CurrentWeather/>
         </div>
       </div>
     );
