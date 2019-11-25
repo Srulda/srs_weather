@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
+import AutoComplete from "./AutoComplete";
 
 @observer
 @inject("weatherStore")
@@ -13,16 +14,13 @@ class Home extends Component {
 
   displayCities =  async (e) =>{
     await this.inputHandler(e)
-    let x = await this.props.weatherStore.displayFilteredData(this.state.searchInput)
-    console.log(x)
+    await this.props.weatherStore.displayFilteredData(this.state.searchInput)
     
   }
+
   inputHandler = e => {
-     this.setState( {[e.target.id] : e.target.value} )
-  };
-
-
-
+    this.setState( {[e.target.id] : e.target.value} )
+  }
 
   render() {
     return (
@@ -41,3 +39,5 @@ class Home extends Component {
 }
 
 export default Home;
+
+
