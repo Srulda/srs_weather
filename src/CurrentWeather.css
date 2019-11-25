@@ -1,0 +1,38 @@
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid black;
+    padding: 10px;
+    margin: 20px;
+}
+
+.upRow{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+#default{
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+#favorites{
+    height: 20px;
+    width: 150px;
+    border: 2px solid black;
+}
+#weatherTitle{
+    text-align: center;
+    height: 20px;
+    margin: 50px;
+}
+.downRow{
+    display: flex;
+    justify-content:center;
+}
+
+.day{
+    border: 1px solid black;
+    margin: 100px;
+    height: 200px;
+}
