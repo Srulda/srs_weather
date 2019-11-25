@@ -1,46 +1,37 @@
-import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
-import { withStyles } from '@material-ui/core';
+import React, { Component } from 'react'
+import { TextField, IconButton, FormControl, Input, InputAdornment } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
+import { withStyles } from '@material-ui/core'
 
 const styles = theme => ({
-    inputContainer: {
-        padding: '2px 4px',
-        display: 'flex',
-        alignItems: 'center',
-        width: 400,
-      },
-      input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
-      },
-      iconButton: {
-        padding: 10,
-      },
-
-      })
+  formControl: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  input: {
+    width: '40%',
+  },
+})
 
 class searchInput extends Component {
-    render() {
-        const { classes } = this.props
-        return (
-            <div component="form" className={classes.inputContainer} >
-            <InputBase
-              className={classes.input}
-              placeholder="Search City"
-              inputProps={{ 'aria-label': 'search city' }}
-            />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+  render() {
+    const { classes, displayCities, searchInput, openPopper } = this.props
+    return (
+      <FormControl className={classes.formControl} onFocus={openPopper}>
+        <Input
+          className={classes.input}
+          id='searchInput'
+          value={searchInput}
+          onChange={displayCities}
+          endAdornment={
+            <InputAdornment position='end'>
               <SearchIcon />
-            </IconButton>            
-          </div>
-        );
-    }
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+    )
+  }
 }
 
-export default withStyles(styles) (searchInput);
+export default withStyles(styles)(searchInput)

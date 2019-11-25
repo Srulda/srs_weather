@@ -1,21 +1,45 @@
-import React, { Component } from 'react';
-import { observer, inject } from "mobx-react";
+import React, { Component } from 'react'
+import { observer, inject } from 'mobx-react'
+import { Popper, List, ListItem } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
+
+const styles = theme => ({
+  popper: {
+    border: '1px solid #c9c9c9',
+    borderTop: 0,
+    width: '40%',
+  },
+  paper: {
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+  },
+})
 
 @observer
-@inject("weatherStore")
+@inject('weatherStore')
 class AutoComplete extends Component {
+  getWeather = (cityKey, cityName, country) => {
+    this.props.weatherStore.getWeather(cityKey)
+    this.props.updateSelectedToInput(cityName, country)
+    this.props.closePopper()
+  }
 
-    getWeather = (cityKey) =>  this.props.weatherStore.getWeather(cityKey)
-        
-    
-
-    render() {
-        return (
-            <div>
-                {this.props.weatherStore.autoCompleteOptions.map(l => <div onClick = {() => this.getWeather(l.key)} key={l.key}>{l.city}, {l.country}</div>)}
-            </div>
-        );
-    }
+  render() {
+    const { classes, weatherStore, open, anchorEl } = this.props
+    return (
+      <Popper className={classes.popper} open={open} anchorEl={anchorEl}>
+        {weatherStore.autoCompleteOptions.map(l => (
+          <div className={classes.paper} key={l.key}>
+            <List dense>
+              <ListItem button onClick={() => this.getWeather(l.key, l.city, l.country)}>
+                {l.city}, {l.country}
+              </ListItem>
+            </List>
+          </div>
+        ))}
+      </Popper>
+    )
+  }
 }
 
-export default AutoComplete;
+export default withStyles(styles)(AutoComplete)
