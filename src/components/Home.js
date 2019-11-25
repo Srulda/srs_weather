@@ -24,6 +24,7 @@ class Home extends Component {
     this.setState( {[e.target.id] : e.target.value} )
   }
 
+
   render() {
     return (
       <div>
@@ -33,7 +34,7 @@ class Home extends Component {
           value = {this.state.searchInput}
           onChange = {this.displayCities} 
            />
-          <button>search</button>
+          <button onClick = {this.getWeather}>search</button>
         </div>
         <div>{ this.state.isCityDisplay ? <AutoComplete /> : null} </div>
       </div>
