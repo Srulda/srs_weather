@@ -14,9 +14,5 @@ const filteredOptions = options.map(l => ( {city : l.LocalizedName, country: l.C
 this.autoCompleteOptions = filteredOptions
         return filteredOptions
     }
-
-// @action displayAutoComplereOptions = () =>{
-//    return this.autoCompleteOptions.map(l => <li>{l.city}, {l.country}</li>)
-// }
-
 }
+

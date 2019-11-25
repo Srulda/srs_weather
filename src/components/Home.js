@@ -8,14 +8,16 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      searchInput: ""
+      searchInput: "",
+      isCityDisplay : false
     };
   }
 
   displayCities =  async (e) =>{
     await this.inputHandler(e)
     await this.props.weatherStore.displayFilteredData(this.state.searchInput)
-    
+     this.setState({ isCityDisplay : true})
+
   }
 
   inputHandler = e => {
@@ -33,6 +35,7 @@ class Home extends Component {
            />
           <button>search</button>
         </div>
+        <div>{ this.state.isCityDisplay ? <AutoComplete /> : null} </div>
       </div>
     );
   }
