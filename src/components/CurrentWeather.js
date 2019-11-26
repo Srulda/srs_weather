@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core";
 import { observer, inject } from "mobx-react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import moment from 'moment'
 
 const styles = theme => ({
   mainContainer: {
@@ -84,14 +85,14 @@ class CurrentWeather extends Component {
                   gutterBottom
                   variant="h4"
                 >
-                  DATE
+                  {moment(t.Date).format('llll').split(",")[0]}
                 </Typography>
                 <Typography
                   className={classes.pos}
                   color="textSecondary"
                   variant="h6"
-                >
-                  {t.Temperature.Maximum.Value} °
+                >{t.Temperature.Minimum.Value}°-
+                  {t.Temperature.Maximum.Value}°
                 </Typography>
               </CardContent>
             </Card>
