@@ -1,46 +1,51 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import CurrentWeather from './CurrentWeather'
-import SearchInput from './SearchInput'
-import AutoComplete from './AutoComplete'
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import CurrentWeather from "./CurrentWeather";
+import SearchInput from "./SearchInput";
+import AutoComplete from "./AutoComplete";
+import Loading from "./Loading";
 
 @observer
-@inject('weatherStore')
+@inject("weatherStore")
 class Home extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      searchInput: '',
+      searchInput: "",
       isCityDisplay: false,
       anchorEl: null,
-    }
+      isLoading: true
+    };
   }
 
   displayCities = async e => {
-    await this.inputHandler(e)
-    await this.props.weatherStore.displayFilteredData(this.state.searchInput)
-    this.setState({ isCityDisplay: true }, () => {})
-  }
+    await this.inputHandler(e);
+    await this.props.weatherStore.displayFilteredData(this.state.searchInput);
+    this.setState({ isCityDisplay: true }, () => {});
+  };
 
   inputHandler = e => {
-    this.setState({ [e.target.id]: e.target.value })
-  }
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
   openPopper = event => {
-    const { anchorEl } = this.state
-    this.setState({ anchorEl: anchorEl ? null : event.currentTarget })
-  }
+    const { anchorEl } = this.state;
+    this.setState({ anchorEl: anchorEl ? null : event.currentTarget });
+  };
 
   closePopper = () => {
-    this.setState({ isCityDisplay: false })
-  }
+    this.setState({
+      isCityDisplay: false,
+      isLoading: false
+    });
+  };
 
   updateSelectedToInput = (city, country) => {
-    this.setState({ searchInput: `${city}, ${country}` })
-  }
+    this.setState({ searchInput: `${city}, ${country}` });
+  };
 
   render() {
-    const { searchInput, isCityDisplay, anchorEl } = this.state
+    const { searchInput, isCityDisplay, anchorEl } = this.state;
 
     return (
       <div>
@@ -61,10 +66,16 @@ class Home extends Component {
             />
           ) : null}
         </div>
-        <CurrentWeather />
+        <div>
+          {this.state.isLoading ? (
+            <Loading />
+          ) : (
+            <CurrentWeather location={this.state.searchInput} />
+          )}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;
