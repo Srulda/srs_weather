@@ -73,7 +73,6 @@ class CurrentWeather extends Component {
         </div>
         <div className={classes.title} elevation={0}>
           <Typography variant="h5">{current.WeatherText}</Typography>
-          {/* <Typography variant='h5'>{current.Temperature.Metric.Value}</Typography> */}
         </div>
         <div className={classes.downRow}>
           {fiveDays.map(t => (
