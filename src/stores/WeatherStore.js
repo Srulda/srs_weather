@@ -28,11 +28,9 @@ export class WeatherStore {
     let fiveDays = await Axios.get(
       `${config.URL_FIVE_DAYS}${cityKey}?apikey=${config.API_KEY}&language=en-us&metric=true`
     );
-    this.currentWeather = current;
-    this.fiveDaysForecast = fiveDays;
-    console.log(current);
-    console.log(fiveDays);
-    
-    
+    this.currentWeather = current.data[0];
+    this.fiveDaysForecast = fiveDays.data.DailyForecasts;
+    console.log(current.data[0]);
+    console.log(fiveDays.data.DailyForecasts);
   };
 }
