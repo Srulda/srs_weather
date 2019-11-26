@@ -21,6 +21,10 @@ export class WeatherStore {
     return filteredOptions;
   };
 
+  @action getDefultLocation = async () => {
+     await this.getWeather(215854)
+  }
+
   @action getWeather = async cityKey => {
     let current = await Axios.get(
       `${config.URL_CURRENT}${cityKey}?apikey=${config.API_KEY}&language=en-us`

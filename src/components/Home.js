@@ -11,12 +11,17 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      searchInput: "",
+      searchInput: "Tel-Aviv, Israel",
       isCityDisplay: false,
       anchorEl: null,
       isLoading: true
     };
   }
+
+  componentDidMount =  async() => {
+    await this.props.weatherStore.getDefultLocation()
+    this.setState({ isLoading : false})
+} 
 
   displayCities = async e => {
     await this.inputHandler(e);
@@ -36,7 +41,6 @@ class Home extends Component {
   closePopper = () => {
     this.setState({
       isCityDisplay: false,
-      isLoading: false
     });
   };
 
