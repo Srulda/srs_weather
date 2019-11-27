@@ -1,23 +1,28 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import CurrentWeather from './CurrentWeather'
-import SearchInput from './SearchInput'
-import AutoComplete from './AutoComplete'
-import { set } from 'mobx'
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import CurrentWeather from "./CurrentWeather";
+import SearchInput from "./SearchInput";
+import AutoComplete from "./AutoComplete";
+import Loading from "./Loading";
 
 @observer
-@inject('weatherStore')
+@inject("weatherStore")
 class Home extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      searchInput: '',
+      searchInput: "Tel-Aviv, Israel",
       isCityDisplay: false,
       anchorEl: null,
       isError: false,
       errorText: '',
-    }
+      isLoading: true
   }
+
+  componentDidMount =  async() => {
+    await this.props.weatherStore.getDefultLocation()
+    this.setState({ isLoading : false})
+} 
 
   displayCities = async e => {
     await this.inputHandler(e)
@@ -49,20 +54,22 @@ class Home extends Component {
   }
 
   openPopper = event => {
-    const { anchorEl } = this.state
-    this.setState({ anchorEl: anchorEl ? null : event.currentTarget })
-  }
+    const { anchorEl } = this.state;
+    this.setState({ anchorEl: anchorEl ? null : event.currentTarget });
+  };
 
   closePopper = () => {
-    this.setState({ isCityDisplay: false })
-  }
+    this.setState({
+      isCityDisplay: false,
+    });
+  };
 
   updateSelectedToInput = (city, country) => {
-    this.setState({ searchInput: `${city}, ${country}` })
-  }
+    this.setState({ searchInput: `${city}, ${country}` });
+  };
 
   render() {
-    const { searchInput, isCityDisplay, anchorEl, isError, errorText } = this.state
+    const { searchInput, isCityDisplay, anchorEl, isError, error
 
     return (
       <div>
@@ -85,10 +92,16 @@ class Home extends Component {
             />
           ) : null}
         </div>
-        <CurrentWeather />
+        <div>
+          {this.state.isLoading ? (
+            <Loading />
+          ) : (
+            <CurrentWeather location={this.state.searchInput} />
+          )}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

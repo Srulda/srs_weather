@@ -21,17 +21,18 @@ const styles = theme => ({
 class searchInput extends Component {
   render() {
     const { classes, displayCities, searchInput, openPopper, isError, errorText } = this.props
+
     return (
       <FormControl className={classes.formControl} onFocus={openPopper}>
         <Input
           className={classes.input}
-          id='searchInput'
+          id="searchInput"
           value={searchInput}
           onChange={displayCities}
           error={isError}
           autoComplete='off'
           endAdornment={
-            <InputAdornment position='end'>
+            <InputAdornment position="end">
               <SearchIcon />
             </InputAdornment>
           }
@@ -44,8 +45,8 @@ class searchInput extends Component {
           ''
         )}
       </FormControl>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(searchInput)
+export default withStyles(styles)(searchInput);
