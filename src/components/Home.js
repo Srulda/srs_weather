@@ -18,7 +18,7 @@ class Home extends Component {
       errorText: '',
       isLoading: true
   }
-
+}
   componentDidMount =  async() => {
     await this.props.weatherStore.getDefaultLocation()
     this.setState({ isLoading : false})
@@ -62,7 +62,7 @@ class Home extends Component {
   closePopper = () => this.setState({ isCityDisplay: false})
   
   render() {
-    const { searchInput, isCityDisplay, anchorEl, isError, error
+    const { searchInput, isCityDisplay, anchorEl, isError, errorText } = this.state;
 
     return (
       <div>
