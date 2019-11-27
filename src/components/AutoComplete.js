@@ -18,6 +18,7 @@ const styles = theme => ({
 @observer
 @inject("weatherStore")
 class AutoComplete extends Component {
+
   getWeather = async (cityKey, cityName, country) => {
     await this.props.weatherStore.getWeather(cityKey);
     this.props.updateSelectedToInput(cityName, country);

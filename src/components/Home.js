@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import CurrentWeather from "./CurrentWeather";
+import Weather from "./Weather";
 import SearchInput from "./SearchInput";
 import AutoComplete from "./AutoComplete";
 import Loading from "./Loading";
@@ -19,7 +19,7 @@ class Home extends Component {
   }
 
   componentDidMount =  async() => {
-    await this.props.weatherStore.getDefultLocation()
+    await this.props.weatherStore.getDefaultLocation()
     this.setState({ isLoading : false})
 } 
 
@@ -29,25 +29,16 @@ class Home extends Component {
     this.setState({ isCityDisplay: true }, () => {});
   };
 
-  inputHandler = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
+  inputHandler = e => this.setState({ [e.target.id]: e.target.value });
 
-  openPopper = event => {
+  updateSelectedToInput = (city, country) => this.setState({ searchInput: `${city}, ${country}` })
+
+  openPopper = e => {
     const { anchorEl } = this.state;
-    this.setState({ anchorEl: anchorEl ? null : event.currentTarget });
-  };
+    this.setState({ anchorEl: anchorEl ? null : e.currentTarget })}
 
-  closePopper = () => {
-    this.setState({
-      isCityDisplay: false,
-    });
-  };
-
-  updateSelectedToInput = (city, country) => {
-    this.setState({ searchInput: `${city}, ${country}` });
-  };
-
+  closePopper = () => this.setState({ isCityDisplay: false})
+  
   render() {
     const { searchInput, isCityDisplay, anchorEl } = this.state;
 
@@ -59,7 +50,6 @@ class Home extends Component {
           searchInput={searchInput}
           openPopper={this.openPopper}
         />
-        {/* <button onClick={this.getWeather}>search</button> */}
         <div>
           {isCityDisplay ? (
             <AutoComplete
@@ -74,7 +64,7 @@ class Home extends Component {
           {this.state.isLoading ? (
             <Loading />
           ) : (
-            <CurrentWeather location={this.state.searchInput} />
+            <Weather location={this.state.searchInput} />
           )}
         </div>
       </div>
