@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react'
 import CurrentWeather from './CurrentWeather'
 import SearchInput from './SearchInput'
 import AutoComplete from './AutoComplete'
+import { set } from 'mobx'
 
 @observer
 @inject('weatherStore')
@@ -13,17 +14,38 @@ class Home extends Component {
       searchInput: '',
       isCityDisplay: false,
       anchorEl: null,
+      isError: false,
+      errorText: '',
     }
   }
 
   displayCities = async e => {
     await this.inputHandler(e)
     await this.props.weatherStore.displayFilteredData(this.state.searchInput)
-    this.setState({ isCityDisplay: true }, () => {})
+    this.setState({ isCityDisplay: true })
+  }
+
+  getErrorText = inputText => {
+    const english = /^[A-Za-z]*$/
+    const isEnglishChar = english.test(inputText)
+    let errorText = ''
+
+    if (inputText.length === 0) {
+      this.setState({ isError: false })
+    } else if (!isEnglishChar) {
+      this.setState({ isError: true })
+      errorText = 'Please use english characters only'
+    } else if (this.props.weatherStore.autoCompleteOptions.length) {
+      this.setState({ isError: true })
+      errorText = 'No results'
+    }
+    this.setState({ errorText })
   }
 
   inputHandler = e => {
-    this.setState({ [e.target.id]: e.target.value })
+    this.setState({ [e.target.id]: e.target.value }, () =>
+      this.getErrorText(this.state.searchInput)
+    )
   }
 
   openPopper = event => {
@@ -40,7 +62,7 @@ class Home extends Component {
   }
 
   render() {
-    const { searchInput, isCityDisplay, anchorEl } = this.state
+    const { searchInput, isCityDisplay, anchorEl, isError, errorText } = this.state
 
     return (
       <div>
@@ -49,6 +71,8 @@ class Home extends Component {
           inputHandler={this.inputHandler}
           searchInput={searchInput}
           openPopper={this.openPopper}
+          isError={isError}
+          errorText={errorText}
         />
         {/* <button onClick={this.getWeather}>search</button> */}
         <div>

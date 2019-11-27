@@ -26,6 +26,9 @@ class AutoComplete extends Component {
 
   render() {
     const { classes, weatherStore, open, anchorEl } = this.props
+    if (!weatherStore.autoCompleteOptions.length) {
+      return <React.Fragment />
+    }
     return (
       <Popper className={classes.popper} open={open} anchorEl={anchorEl}>
         {weatherStore.autoCompleteOptions.map(l => (
