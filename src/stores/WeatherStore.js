@@ -21,7 +21,7 @@ export class WeatherStore {
     return filteredOptions;
   };
 
-  @action getDefultLocation = async () => {
+  @action getDefaultLocation = async () => {
      await this.getWeather(215854)
   }
 

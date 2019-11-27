@@ -11,7 +11,7 @@ import Home from './components/Home'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#C38D9E',
+      main: '#649BED',
     },
     secondary: {
       main: '#41B3A3',
