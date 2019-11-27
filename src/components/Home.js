@@ -5,8 +5,8 @@ import SearchInput from "./SearchInput";
 import AutoComplete from "./AutoComplete";
 import Loading from "./Loading";
 
-@observer
-@inject("weatherStore")
+
+@inject("weatherStore") @observer
 class Home extends Component {
   constructor() {
     super();

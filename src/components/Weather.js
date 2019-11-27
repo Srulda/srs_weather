@@ -48,8 +48,8 @@ const styles = theme => ({
   }
 });
 
-@observer
-@inject("weatherStore")
+
+@inject("weatherStore") @observer
 class Weather extends Component {
   render() {
     const current = this.props.weatherStore.currentWeather;
