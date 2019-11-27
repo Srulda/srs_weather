@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import FiveDays from "./FiveDays";
 import "../CurrentWeather.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Paper from "@material-ui/core/Paper";
@@ -8,7 +7,7 @@ import { withStyles } from "@material-ui/core";
 import { observer, inject } from "mobx-react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import moment from 'moment'
+import moment from "moment";
 
 const styles = theme => ({
   mainContainer: {
@@ -51,7 +50,7 @@ const styles = theme => ({
 
 @observer
 @inject("weatherStore")
-class CurrentWeather extends Component {
+class Weather extends Component {
   render() {
     const current = this.props.weatherStore.currentWeather;
     const fiveDays = this.props.weatherStore.fiveDaysForecast;
@@ -84,13 +83,18 @@ class CurrentWeather extends Component {
                   gutterBottom
                   variant="h4"
                 >
-                  {moment(t.Date).format('llll').split(",")[0]}
+                  {
+                    moment(t.Date)
+                      .format("llll")
+                      .split(",")[0]
+                  }
                 </Typography>
                 <Typography
                   className={classes.pos}
                   color="textSecondary"
                   variant="h6"
-                >{t.Temperature.Minimum.Value}°-
+                >
+                  {t.Temperature.Minimum.Value}°-
                   {t.Temperature.Maximum.Value}°
                 </Typography>
               </CardContent>
@@ -102,4 +106,4 @@ class CurrentWeather extends Component {
   }
 }
 
-export default withStyles(styles)(CurrentWeather);
+export default withStyles(styles)(Weather);
