@@ -7,7 +7,7 @@ const styles = theme => ({
   formControl: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: '3%',
+    marginTop: '10%',
   },
   input: {
     width: '40%',

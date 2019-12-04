@@ -15,8 +15,8 @@ const styles = theme => ({
   }
 });
 
-@observer
-@inject("weatherStore")
+
+@inject("weatherStore") @observer
 class AutoComplete extends Component {
 
   getWeather = async (cityKey, cityName, country) => {
