@@ -15,7 +15,7 @@ class Home extends Component {
       isCityDisplay: false,
       anchorEl: null,
       isError: false,
-      errorText: '',
+      errorText: "",
       isLoading: true
   }
 }
@@ -33,16 +33,16 @@ class Home extends Component {
   getErrorText = inputText => {
     const english = /^[A-Za-z]*$/
     const isEnglishChar = english.test(inputText)
-    let errorText = ''
+    let errorText = ""
 
     if (inputText.length === 0) {
       this.setState({ isError: false })
     } else if (!isEnglishChar) {
       this.setState({ isError: true })
-      errorText = 'Please use english characters only'
+      errorText = "Please use english characters only"
     } else if (this.props.weatherStore.autoCompleteOptions.length) {
       this.setState({ isError: true })
-      errorText = 'No results'
+      errorText = "No results"
     }
     this.setState({ errorText })
   }

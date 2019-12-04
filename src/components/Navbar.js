@@ -22,6 +22,7 @@ const styles = theme => ({
   },
   button: {
     textTransform: 'none',
+
   },
   activeButton: {
     background: theme.palette.secondary.main,
@@ -40,12 +41,12 @@ class Navbar extends Component {
             </Typography>
             <ButtonGroup>
               <Button variant='outlined' className={classes.button}>
-                <Link to={`/`} style={{ color: '#000', textDecoration: 'none' }}>
+                <Link to={`/`} style={{ color: '#fff', textDecoration: 'none' }}>
                   Home
                 </Link>
               </Button>
               <Button variant='outlined' className={classes.button}>
-                <Link to={`/favorites`} style={{ color: '#000', textDecoration: 'none' }}>
+                <Link to={`/favorites`} style={{ color: '#fff', textDecoration: 'none' }}>
                   Favorites
                 </Link>
               </Button>

@@ -4,7 +4,7 @@ const myConfig = {
     URL_FIVE_DAYS : `http://dataservice.accuweather.com/forecasts/v1/daily/5day/`
 }
 
-module.exports = myConfig;
+module.exports = myConfig
 
 
 

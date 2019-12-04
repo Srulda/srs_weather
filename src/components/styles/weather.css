@@ -1,0 +1,46 @@
+#weatherContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 20em;
+    width: 40em;
+    margin: 5em;
+    margin-left: 18em;
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+#dailyCard {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+}
+
+#dayText {
+    border-left: 1px solid black;
+    border-right:1px solid black;
+    color: #154447
+}
+
+#currentWeather{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    font-weight: 900;
+    font-size: 2.3em;
+    text-shadow: 2px 3px 0px #41415a;
+}
+
+#favorites {
+    font-weight: 400;
+    font-size: 0.6em;
+    text-shadow: none;
+}
+
+#min{
+    color: #b0dadd;
+
+}
+#max {
+    color: #154447;
+
+}
+
